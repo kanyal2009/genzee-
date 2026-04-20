@@ -1,0 +1,869 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gen Zee Cafe Restaurant and Bakers - Pantnagar | Cozy Cafe & Bakery</title>
+  <meta name="description" content="Gen Zee Cafe Restaurant and Bakers in Pantnagar. Cozy cafe vibes, delicious meals, fresh bakery, and easy contact options." />
+  <style>
+    :root {
+      --bg: #f7f2ea;
+      --surface: rgba(255,255,255,0.82);
+      --surface-strong: #ffffff;
+      --text: #2f241f;
+      --muted: #6b5b52;
+      --brand: #8b4d22;
+      --brand-2: #c76b2b;
+      --accent: #f59e0b;
+      --accent-2: #ef7f1a;
+      --line: rgba(139, 77, 34, 0.12);
+      --shadow: 0 18px 50px rgba(64, 38, 19, 0.10);
+      --shadow-strong: 0 24px 80px rgba(64, 38, 19, 0.16);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(245,158,11,0.10), transparent 30%),
+    radial-gradient(circle at top right, rgba(139,77,34,0.08), transparent 28%),
+    linear-gradient(180deg, #fffaf3 0%, var(--bg) 100%);
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+.container {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(18px);
+  background: rgba(255,255,255,0.72);
+  border-bottom: 1px solid rgba(139, 77, 34, 0.10);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  min-height: 78px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.brand img {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 8px 24px rgba(139,77,34,0.18);
+  border: 1px solid rgba(139,77,34,0.12);
+  flex: 0 0 auto;
+}
+
+.brand-text {
+  min-width: 0;
+  line-height: 1.05;
+}
+
+.brand-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-top: 4px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #4b3b33;
+  font-weight: 600;
+  font-size: 0.98rem;
+  padding: 10px 4px;
+  border-bottom: 2px solid transparent;
+  transition: 0.2s ease;
+}
+
+.nav a:hover { color: var(--brand); border-bottom-color: var(--accent); }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 12px 18px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  white-space: nowrap;
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn-primary {
+  color: white;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+.btn-primary:hover { box-shadow: 0 16px 32px rgba(139,77,34,0.24); }
+
+.btn-secondary {
+  color: white;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+}
+
+.menu-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(139,77,34,0.10);
+  background: rgba(255,255,255,0.88);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: #3b2d26;
+  display: block;
+  position: relative;
+  transition: 0.25s ease;
+}
+.menu-toggle span::before,
+.menu-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 20px;
+  height: 2px;
+  background: #3b2d26;
+  transition: 0.25s ease;
+}
+.menu-toggle span::before { top: -6px; }
+.menu-toggle span::after { top: 6px; }
+
+.menu-toggle[aria-expanded="true"] span { background: transparent; }
+.menu-toggle[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] span::after { transform: translateY(-6px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  padding: 0 0 16px;
+}
+
+.mobile-nav-panel {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(139,77,34,0.10);
+  box-shadow: var(--shadow);
+}
+
+.mobile-nav a {
+  text-decoration: none;
+  padding: 14px 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  color: #3d302a;
+  background: #faf7f2;
+}
+
+.mobile-nav a:hover { background: #f4ebe1; color: var(--brand); }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 78px);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(120deg, rgba(35,22,15,0.76), rgba(139,77,34,0.48)),
+    url('https://i.ibb.co/nqZQqyXL/Whats-App-Image-2026-02-28-at-4-49-27-PM.jpg') center/cover no-repeat;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, rgba(255,255,255,0.10), transparent 35%);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 84px 0;
+  color: white;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.35rem, 6vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.hero p {
+  margin: 18px auto 0;
+  max-width: 760px;
+  font-size: clamp(1.05rem, 2vw, 1.55rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,0.92);
+  text-wrap: balance;
+}
+
+.hero .tagline {
+  margin-top: 18px;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  font-weight: 800;
+  color: #ffe2b7;
+}
+
+.hero-cta {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+/* Sections */
+section {
+  padding: 88px 0;
+}
+
+.section-head {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: -0.03em;
+}
+
+.section-head p {
+  margin: 0 auto;
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.card-surface {
+  background: var(--surface);
+  border: 1px solid rgba(139,77,34,0.10);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+/* About */
+.about-wrap,
+.contact-wrap {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.about-wrap p,
+.contact-wrap p {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.02rem, 1.6vw, 1.22rem);
+  line-height: 1.9;
+  color: #4a3d36;
+}
+
+/* Features */
+.features-grid,
+.products-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.features-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.feature {
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(139,77,34,0.10);
+  box-shadow: 0 12px 34px rgba(64, 38, 19, 0.07);
+}
+
+.feature .icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  background: linear-gradient(135deg, rgba(245,158,11,0.18), rgba(139,77,34,0.12));
+  margin-bottom: 14px;
+}
+
+.feature h3 {
+  margin: 0 0 10px;
+  font-size: 1.12rem;
+}
+
+.feature p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* Menu */
+.menu-group {
+  margin-top: 28px;
+}
+
+.menu-title {
+  margin: 0 0 16px;
+  text-align: center;
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+
+.products-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-card {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(139,77,34,0.10);
+  box-shadow: 0 14px 40px rgba(64, 38, 19, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+.image-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #efe6da;
+  position: relative;
+}
+
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.product-card:hover img { transform: scale(1.04); }
+
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 18px;
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.72));
+}
+
+.product-card h4 {
+  margin: 0;
+  padding: 18px 18px 20px;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #3a2c25;
+}
+
+/* Contact */
+.contact-grid {
+  display: grid;
+  gap: 18px;
+  text-align: center;
+}
+
+.contact-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.contact-buttons .btn {
+  min-width: 190px;
+}
+
+.hours {
+  margin-top: 18px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(245,158,11,0.10);
+  border: 1px dashed rgba(245,158,11,0.45);
+  font-weight: 700;
+  color: #7c4d1f;
+}
+
+.address strong { color: var(--brand); }
+
+/* Footer */
+footer {
+  padding: 34px 0 40px;
+  color: #5b4a41;
+  text-align: center;
+}
+
+footer .foot-card {
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.76);
+  border: 1px solid rgba(139,77,34,0.10);
+  box-shadow: var(--shadow);
+}
+
+footer p { margin: 8px 0; }
+
+.floating-whatsapp {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  box-shadow: 0 16px 34px rgba(34,197,94,0.30);
+  z-index: 1100;
+}
+
+.floating-whatsapp:hover { transform: translateY(-2px); }
+
+/* Responsive */
+@media (max-width: 980px) {
+  .nav { display: none; }
+  .menu-toggle { display: inline-flex; }
+  .mobile-nav { display: block; }
+  .mobile-nav[hidden] { display: none; }
+  .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .container { width: min(var(--max), calc(100% - 20px)); }
+  .header-inner { gap: 10px; padding: 12px 0; }
+  .brand img { width: 48px; height: 48px; border-radius: 14px; }
+  .brand-title { font-size: 1rem; }
+  .brand-subtitle { font-size: 0.84rem; }
+  .actions .btn-primary { display: none; }
+  .hero-inner { padding: 66px 0; }
+  section { padding: 64px 0; }
+  .features-grid, .products-grid { grid-template-columns: 1fr; }
+  .hero-cta .btn { width: 100%; max-width: 360px; }
+  .contact-buttons .btn { width: 100%; }
+  .floating-whatsapp { right: 14px; bottom: 14px; }
+}
+
+/* subtle reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="#home" aria-label="Gen Zee Cafe home">
+          <img src="https://i.ibb.co/DD69rdYf/image.jpg" alt="Gen Zee Cafe Logo" />
+          <div class="brand-text">
+            <div class="brand-title">Gen Zee Cafe</div>
+            <div class="brand-subtitle">Pantnagar</div>
+          </div>
+        </a><nav class="nav" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#why-choose">Why Us</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="https://wa.me/919837931550?text=Hello%20Gen%20Zee%20Cafe%2C%20I%20want%20to%20place%20an%20order!">Order Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav" id="mobileNav" hidden aria-label="Mobile">
+    <div class="mobile-nav-panel">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#why-choose">Why Us</a>
+      <a href="#menu">Menu</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/919837931550?text=Hello%20Gen%20Zee%20Cafe%2C%20I%20want%20to%20place%20an%20order!">Order Now</a>
+    </div>
+  </nav>
+</div>
+
+  </header>  <main>
+    <section id="home" class="hero">
+      <div class="container hero-inner reveal">
+        <div class="eyebrow">☕ Cozy Cafe • 🍰 Fresh Bakery • Pantnagar</div>
+        <h1>Welcome to Gen Zee Cafe</h1>
+        <p>Cozy corner for coffee, delicious meals, fresh bakery & good times!</p>
+        <div class="tagline">Your favorite hangout spot ☕🍰</div>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#menu">View Menu</a>
+          <a class="btn btn-secondary" href="https://wa.me/919837931550?text=Hello%20Gen%20Zee%20Cafe%2C%20I%20want%20to%20place%20an%20order!">WhatsApp Order</a>
+        </div>
+      </div>
+    </section><section id="about">
+  <div class="container reveal">
+    <div class="section-head">
+      <h2>About Us</h2>
+    </div>
+    <div class="card-surface about-wrap">
+      <p>Gen Zee Cafe Restaurant and Bakers brings the perfect blend of modern cafe vibes, hearty food, and fresh bakery to Pantnagar. Relax with a cup of coffee, enjoy tasty meals or grab fresh pastries – we make every visit memorable.</p>
+    </div>
+  </div>
+</section>
+
+<section id="why-choose">
+  <div class="container reveal">
+    <div class="section-head">
+      <h2>Why Choose Us</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="icon">☕</div>
+        <h3>Cozy Cafe Vibe</h3>
+        <p>Warm lighting, comfortable seating & artistic walls</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🍽️</div>
+        <h3>Delicious Variety</h3>
+        <p>Cafe drinks, full meals, snacks & bakery fresh daily</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🎂</div>
+        <h3>Fresh Bakery</h3>
+        <p>Cakes, pastries, cookies & custom orders baked fresh</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚡</div>
+        <h3>Quick & Friendly</h3>
+        <p>Fast service, takeaway & dine-in with a smile</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container reveal">
+    <div class="section-head">
+      <h2>Our Full Menu</h2>
+      <p>Fresh drinks, tasty food, bakery & desserts – all prepared fresh daily. Confirm on WhatsApp/call.</p>
+    </div>
+
+    <div class="menu-group">
+      <h3 class="menu-title">Cafe Drinks ☕</h3>
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/QF9q7R5R/Blue-20-Lagoon.jpg" alt="Blue Lagoon">
+            <div class="overlay">Refreshing mocktail</div>
+          </div>
+          <h4>Blue Lagoon</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/LhR10Q1s/Cafe-style-cold-coffee-with-icecream.jpg" alt="Cold Coffee with Icecream">
+            <div class="overlay">Creamy & chilled</div>
+          </div>
+          <h4>Cold Coffee with Icecream</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/60NVRxyr/How-to-Make-a-Strawberry-Milkshake-Without-Ice-Cream-17-732x1024-jpg.jpg" alt="Strawberry Milkshake">
+            <div class="overlay">Fruity & sweet</div>
+          </div>
+          <h4>Strawberry Milkshake</h4>
+        </article>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <h3 class="menu-title">Food & Snacks 🍔🍲</h3>
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/LDNyfPQF/8933a3-2e2958f1424141fc94aeef57a5397bf2-mv2.jpg" alt="Special Indian Thali">
+            <div class="overlay">Main Course</div>
+          </div>
+          <h4>Special Indian Thali</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/DfXJcx1s/560278764-24941609125435357-6994727851713071438-n.jpg" alt="Fried Momos">
+            <div class="overlay">Delicious bite</div>
+          </div>
+          <h4>Fried Momos</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/BHZ35Vdb/CITYPNG-COMFlying-Chicken-Burger-With-Lettuce-Mayo-Sauce-HD-PNG-2000x2000-1-1-1024x1024.jpg" alt="Chicken Burger">
+            <div class="overlay">Juicy burger</div>
+          </div>
+          <h4>Chicken Burger</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/ZRFBMp6C/dal-makhani7.jpg" alt="Dal Makhani">
+            <div class="overlay">Creamy dal</div>
+          </div>
+          <h4>Dal Makhani</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/6R0LLxbG/images-1.jpg" alt="Naan">
+            <div class="overlay">Tasty main course</div>
+          </div>
+          <h4>Naan</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/d42WDbD8/images.jpg" alt="Chilli Chicken">
+            <div class="overlay">Spicy dish</div>
+          </div>
+          <h4>Chilli Chicken</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/23HvPwpP/paneer-butter-masala-1.jpg" alt="Paneer Butter Masala">
+            <div class="overlay">Rich gravy</div>
+          </div>
+          <h4>Paneer Butter Masala</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/3mQJ17Bf/Pngtree-hot-cheesy-pizza-with-fresh-20878015-1489x1536.jpg" alt="Cheese Pizza">
+            <div class="overlay">Cheesy pizza</div>
+          </div>
+          <h4>Cheese Pizza / Veg Pizza</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/twYQZqx9/Thukpa-7.jpg" alt="Thukpa / Veg Noodles">
+            <div class="overlay">Warm soup noodles</div>
+          </div>
+          <h4>Thukpa / Veg Noodles</h4>
+        </article>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <h3 class="menu-title">Bakery & Desserts 🍰🧁</h3>
+      <div class="products-grid">
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/DPP73XWt/Whats-App-Image-2026-02-28-at-4-49-31-PM.jpg" alt="Yellow mango buttercream cake with decorative toppings">
+            <div class="overlay">Tropical & vibrant</div>
+          </div>
+          <h4>Mango Fantasy Cake</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/gMygJ1dF/Whats-App-Image-2026-02-28-at-4-49-36-PM.jpg" alt="Rich black chocolate cake with gold balls and cherry">
+            <div class="overlay">Luxury chocolate delight</div>
+          </div>
+          <h4>Chocolate Gold Cake</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/9kzwsDDY/Whats-App-Image-2026-02-28-at-4-49-38-PM.jpg" alt="Chocolate truffle cake slices with glossy topping">
+            <div class="overlay">Indulgent slices</div>
+          </div>
+          <h4>Chocolate Truffle Slices</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/x8m3zwMg/Whats-App-Image-2026-02-28-at-4-49-41-PM.jpg" alt="Creamy pastry slices with fruit and drizzle">
+            <div class="overlay">Fresh layered pastries</div>
+          </div>
+          <h4>Pineapple / Mango Pastry Slices</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/BVsZ7RBW/Whats-App-Image-2026-02-28-at-4-49-49-PM.jpg" alt="Heart-shaped dark chocolate treats">
+            <div class="overlay">Romantic chocolate bites</div>
+          </div>
+          <h4>Dark Chocolate Hearts</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/S7QKcvfH/Whats-App-Image-2026-02-28-at-4-49-47-PM.jpg" alt="Chocolate donuts topped with colorful sprinkles">
+            <div class="overlay">Fun & sweet donuts</div>
+          </div>
+          <h4>Chocolate Sprinkle Donuts</h4>
+        </article>
+        <article class="product-card">
+          <div class="image-wrap">
+            <img loading="lazy" src="https://i.ibb.co/jkCsywMp/Whats-App-Image-2026-02-28-at-4-49-45-PM.jpg" alt="Mango mousse cups with choco chips and drizzle">
+            <div class="overlay">Creamy mango delight</div>
+          </div>
+          <h4>Mango Mousse Cups</h4>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container reveal">
+    <div class="section-head">
+      <h2>Contact Us</h2>
+    </div>
+    <div class="card-surface contact-wrap contact-grid">
+      <div class="address">
+        <p><strong>📍 Address:</strong></p>
+        <p>Gen Zee Cafe Restaurant and Bakers<br />Jawahar Nagar, Pantnagar, Uttarakhand 263149</p>
+      </div>
+      <div class="contact-buttons">
+        <a class="btn btn-primary" href="tel:+919837931550">📞 Call Now</a>
+        <a class="btn btn-secondary" href="https://wa.me/919837931550?text=Hello%20Gen%20Zee%20Cafe%2C%20I%20want%20to%20place%20an%20order!">💬 WhatsApp Order</a>
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Gen+Zee+Cafe+Restaurant+and+Bakers%2C+Jawahar+Nagar%2C+Pantnagar%2C+Uttarakhand+263149" target="_blank" rel="noopener">🗺️ Visit Us on Maps</a>
+      </div>
+      <div class="hours">🕒 Open Daily: 10:00 AM – 11:00 PM (confirm on call)</div>
+    </div>
+  </div>
+</section>
+
+  </main>  <footer>
+    <div class="container">
+      <div class="foot-card">
+        <p>© 2026 Gen Zee Cafe Restaurant and Bakers, Pantnagar. All rights reserved.</p>
+        <p>Made with ❤️ for the coziest cafe vibes in town!</p>
+      </div>
+    </div>
+  </footer><a class="floating-whatsapp" href="https://wa.me/919837931550?text=Hello!%20I%20want%20to%20visit/order%20from%20Gen%20Zee%20Cafe" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+
+    function setMobileNav(open) {
+      menuToggle.setAttribute('aria-expanded', String(open));
+      mobileNav.hidden = !open;
+    }
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      setMobileNav(!isOpen);
+    });
+
+    mobileNav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setMobileNav(false));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!mobileNav.hidden && !mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        setMobileNav(false);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 980) setMobileNav(false);
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach((el) => observer.observe(el));
+  </script></body>
+</html>
