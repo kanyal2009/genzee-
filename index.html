@@ -2,6 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>document.documentElement.classList.add("js");</script>
   <title>Gen Zee Cafe Restaurant and Bakers - Pantnagar | Cozy Cafe & Bakery</title>
   <meta name="description" content="Gen Zee Cafe Restaurant and Bakers in Pantnagar. Cozy cafe vibes, delicious meals, fresh bakery, and easy contact options." />
   <style>
@@ -553,13 +554,17 @@ footer p { margin: 8px 0; }
   .floating-whatsapp { right: 14px; bottom: 14px; }
 }
 
-/* subtle reveal */
+/* subtle reveal - safe on all mobile browsers */
 .reveal {
+  opacity: 1;
+  transform: none;
+}
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
-.reveal.show {
+.js .reveal.show {
   opacity: 1;
   transform: translateY(0);
 }
@@ -898,12 +903,21 @@ footer p { margin: 8px 0; }
     });
 
     const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => observer.observe(el));
+      requestAnimationFrame(() => {
+        revealEls.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) el.classList.add('show');
+        });
       });
-    }, { threshold: 0.12 });
-
-    revealEls.forEach((el) => observer.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('show'));
+    }
   </script></body>
 </html>
